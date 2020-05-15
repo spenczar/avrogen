@@ -57,6 +57,9 @@ def avrotype_to_pytype(type_schema: avro.schema.Schema) -> str:
         return "List[" + avrotype_to_pytype(type_schema.items) + "]"
     if isinstance(type_schema, avro.schema.MapSchema):
         return "Dict[str, " + avrotype_to_pytype(type_schema.values) + "]"
+    if isinstance(type_schema, avro.schema.RecordSchema):
+        # TODO
+        raise(Exception(f"Unable to handle type {type(type_schema)}"))
     else:
         raise(Exception(f"Unable to handle type {type(type_schema)}"))
 
